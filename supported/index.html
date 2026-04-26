@@ -3,187 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zen Bypass | Ultra Premium</title>
+    <title>Harblx API | Supported Services</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        * { cursor: crosshair; }
-        body {
-            background-color: #020202;
-            color: #fff;
-            font-family: 'Space Grotesk', sans-serif;
-            overflow-x: hidden;
+        :root { --p: #6366f1; --bg: #050505; }
+        body { background: var(--bg); color: #fff; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
+        
+        /* Hiệu ứng nền mờ ảo */
+        .blob {
+            position: fixed; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 70%);
+            filter: blur(80px); z-index: -1; animation: move 20s infinite alternate;
+        }
+        @keyframes move { from { transform: translate(-20%, -20%); } to { transform: translate(40%, 40%); } }
+
+        /* Card Service Glassmorphism */
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .service-card:hover {
+            border-color: var(--p);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+            transform: translateY(-5px);
         }
 
-        /* Hiệu ứng nền Aurora */
-        .aurora {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                radial-gradient(circle at 20% 20%, #1e1b4b 0%, transparent 40%),
-                radial-gradient(circle at 80% 80%, #312e81 0%, transparent 40%);
-            z-index: -1;
-            opacity: 0.5;
+        /* Loading Spinner */
+        .loader {
+            width: 48px; height: 48px;
+            border: 5px solid #FFF; border-bottom-color: var(--p);
+            border-radius: 50%; display: inline-block;
+            box-sizing: border-box; animation: rotation 1s linear infinite;
         }
-
-        /* Card với viền chạy sáng (Animated Border) */
-        .neon-card {
-            position: relative;
-            background: rgba(10, 10, 10, 0.8);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: 0.5s;
-        }
-
-        .neon-card::before {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: conic-gradient(transparent, transparent, transparent, #6366f1);
-            animation: rotate 4s linear infinite;
-        }
-
-        .neon-card::after {
-            content: '';
-            position: absolute;
-            inset: 2px;
-            background: #0a0a0a;
-            border-radius: 18px;
-            z-index: 1;
-        }
-
-        .card-content {
-            position: relative;
-            z-index: 2;
-            padding: 30px;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Hiệu ứng Text Neon */
-        .neon-text {
-            color: #fff;
-            text-shadow: 0 0 10px #6366f1, 0 0 20px #6366f1;
-        }
-
-        /* Nút bấm thiết kế theo kiểu tương lai */
-        .cyber-btn {
-            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
-            background: linear-gradient(90deg, #4f46e5, #9333ea);
-            padding: 12px 40px;
-            font-weight: bold;
-            transition: 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .cyber-btn:hover {
-            letter-spacing: 5px;
-            box-shadow: 0 0 30px rgba(99, 102, 241, 0.6);
-            transform: scale(1.05);
-        }
-
-        /* Floating Animation */
-        .float { animation: floatAnim 6s ease-in-out infinite; }
-        @keyframes floatAnim {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* Hiệu ứng mờ ảo phía sau */
-        .blur-dot {
-            position: absolute;
-            width: 150px; height: 150px;
-            background: #6366f1;
-            filter: blur(100px);
-            z-index: 0;
-            pointer-events: none;
-        }
+        @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
 
-    <div class="aurora"></div>
+    <div class="blob"></div>
 
-    <header class="p-8 flex justify-between items-center relative z-10">
-        <div class="text-3xl font-bold tracking-[10px] uppercase neon-text">Zen</div>
-        <div class="flex gap-8 text-xs font-medium tracking-widest text-gray-500 uppercase">
-            <a href="#" class="hover:text-white transition">Home</a>
-            <a href="#" class="hover:text-white transition">Nodes</a>
-            <a href="#" class="hover:text-white transition">Network</a>
+    <header class="p-6 border-b border-white/5 bg-black/50 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center font-bold text-xl shadow-[0_0_15px_rgba(99,102,241,0.5)]">H</div>
+                <span class="text-xl font-bold tracking-tighter uppercase">Harblx <span class="text-indigo-500">API</span></span>
+            </div>
+            <a href="https://discord.gg/yourlink" class="text-xs font-bold py-2 px-4 border border-white/10 rounded-full hover:bg-white hover:text-black transition uppercase tracking-widest">Discord</a>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 py-20 relative">
-        <div class="blur-dot top-0 left-0"></div>
-        <div class="blur-dot bottom-0 right-0" style="background: #9333ea;"></div>
-
-        <div class="grid lg:grid-cols-2 gap-20 items-center">
-            <div class="relative z-10">
-                <h1 class="text-7xl md:text-9xl font-black mb-6 leading-none italic">
-                    ZEN <br> <span class="text-gray-800" style="-webkit-text-stroke: 1px #fff;">BYPASS</span>
-                </h1>
-                <p class="text-gray-400 text-lg mb-10 max-w-md border-l-4 border-indigo-600 pl-6">
-                    Phá vỡ mọi rào cản liên kết với công nghệ điện toán đám mây thế hệ mới. Tốc độ cực hạn, an toàn tuyệt đối.
-                </p>
-                <button class="cyber-btn text-white">Unlock Now</button>
-            </div>
-
-            <div class="grid gap-8 relative">
-                <div class="neon-card float">
-                    <div class="card-content">
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="text-indigo-400 font-bold uppercase tracking-widest text-xs">Primary Node</span>
-                            <div class="w-3 h-3 bg-green-500 rounded-full animate-ping"></div>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-2">Linkvertise Engine</h3>
-                        <p class="text-gray-500 text-sm">Bypass instantly without surveys or ads waiting time.</p>
-                    </div>
-                </div>
-
-                <div class="neon-card" style="animation-delay: 1s;">
-                    <div class="card-content">
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="text-purple-400 font-bold uppercase tracking-widest text-xs">Security Node</span>
-                            <div class="w-3 h-3 bg-blue-500 rounded-full shadow-[0_0_10px_#3b82f6]"></div>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-2">Key System Unlocker</h3>
-                        <p class="text-gray-500 text-sm">Codex, Fluxus, and Hydrogen keys generated in seconds.</p>
-                    </div>
-                </div>
-            </div>
+    <main class="max-w-5xl mx-auto px-6 py-20">
+        <div class="text-center mb-16">
+            <h1 class="text-5xl md:text-7xl font-black mb-6 italic uppercase">Supported</h1>
+            <p class="text-gray-400">Danh sách các dịch vụ đang được hỗ trợ bởi hệ thống Harblx Online.</p>
         </div>
 
-        <div class="mt-40">
-            <h2 class="text-center text-gray-700 font-bold uppercase tracking-[20px] mb-20">Network Stats</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="border border-white/5 bg-white/5 p-8 rounded-3xl text-center backdrop-blur-md">
-                    <div class="text-4xl font-bold mb-2 neon-text">99%</div>
-                    <div class="text-[10px] text-gray-500 uppercase tracking-widest">Uptime</div>
-                </div>
-                <div class="border border-white/5 bg-white/5 p-8 rounded-3xl text-center backdrop-blur-md">
-                    <div class="text-4xl font-bold mb-2">0.2s</div>
-                    <div class="text-[10px] text-gray-500 uppercase tracking-widest">Latency</div>
-                </div>
-                <div class="border border-white/5 bg-white/5 p-8 rounded-3xl text-center backdrop-blur-md">
-                    <div class="text-4xl font-bold mb-2 neon-text">5M+</div>
-                    <div class="text-[10px] text-gray-500 uppercase tracking-widest">Requests</div>
-                </div>
-                <div class="border border-white/5 bg-white/5 p-8 rounded-3xl text-center backdrop-blur-md">
-                    <div class="text-4xl font-bold mb-2">Global</div>
-                    <div class="text-[10px] text-gray-500 uppercase tracking-widest">Availability</div>
-                </div>
+        <div id="loading-state" class="flex flex-col items-center justify-center py-20">
+            <span class="loader"></span>
+            <p class="mt-4 text-gray-500 animate-pulse">Đang tải dữ liệu từ API...</p>
+        </div>
+
+        <div id="services-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 hidden">
             </div>
+
+        <div id="error-state" class="hidden text-center py-20 border border-red-500/20 rounded-3xl bg-red-500/5">
+            <p class="text-red-400 font-bold">⚠️ Không thể kết nối tới API Harblx!</p>
+            <p class="text-gray-500 text-sm mt-2">Vui lòng kiểm tra lại server hoặc cấu hình CORS.</p>
         </div>
     </main>
 
-    <footer class="py-20 text-center opacity-30">
-        <div class="text-[10px] tracking-[5px] uppercase italic">System Version 4.0.2 - Zen Protocol</div>
+    <footer class="py-10 text-center border-t border-white/5 opacity-40 text-[10px] tracking-[5px] uppercase">
+        Endpoint: api.harblx.online:31329
     </footer>
 
+    <script>
+        const API_URL = 'http://api.harblx.online:31329/v1/supported';
+        const container = document.getElementById('services-container');
+        const loader = document.getElementById('loading-state');
+        const errorMsg = document.getElementById('error-state');
+
+        async function fetchServices() {
+            try {
+                // Gọi API
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error('Network response was not ok');
+                
+                const data = await response.json();
+                
+                // Giả sử data trả về là một array các tên dịch vụ
+                // Ví dụ: ["Linkvertise", "Lootlabs", ...]
+                renderServices(data.supported || data); // Chỉnh sửa theo đúng format JSON của bạn
+                
+            } catch (error) {
+                console.error('Fetch error:', error);
+                loader.classList.add('hidden');
+                errorMsg.classList.remove('hidden');
+            }
+        }
+
+        function renderServices(services) {
+            loader.classList.add('hidden');
+            container.classList.remove('hidden');
+            
+            if (Array.isArray(services)) {
+                container.innerHTML = services.map(service => `
+                    <div class="service-card p-6 rounded-2xl text-center">
+                        <div class="w-2 h-2 bg-indigo-500 rounded-full mx-auto mb-4 shadow-[0_0_8px_#6366f1]"></div>
+                        <span class="font-bold text-gray-200">${service}</span>
+                    </div>
+                `).join('');
+            } else {
+                // Nếu data là Object phức tạp hơn, bạn cần chỉnh sửa phần này
+                container.innerHTML = `<p class="col-span-full text-center text-gray-500">Định dạng dữ liệu không xác định.</p>`;
+            }
+        }
+
+        // Chạy hàm khi trang web load
+        fetchServices();
+    </script>
 </body>
 </html>
