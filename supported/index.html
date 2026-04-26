@@ -3,126 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harblx API | Supported Services</title>
+    <title>HARBLX API | Supported</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --p: #6366f1; --bg: #050505; }
-        body { background: var(--bg); color: #fff; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
-        
-        /* Hiệu ứng nền mờ ảo */
-        .blob {
-            position: fixed; width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 70%);
-            filter: blur(80px); z-index: -1; animation: move 20s infinite alternate;
+        body {
+            background-color: #050505;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
-        @keyframes move { from { transform: translate(-20%, -20%); } to { transform: translate(40%, 40%); } }
 
-        /* Card Service Glassmorphism */
+        .glow-text {
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .error-container {
+            background: rgba(255, 0, 0, 0.03);
+            border: 1px solid rgba(255, 50, 50, 0.15);
+            border-radius: 24px;
+        }
+
         .service-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: #0a0a0a;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .service-card:hover {
-            border-color: var(--p);
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
-            transform: translateY(-5px);
+            border-radius: 16px;
+            transition: all 0.3s ease;
         }
 
-        /* Loading Spinner */
-        .loader {
-            width: 48px; height: 48px;
-            border: 5px solid #FFF; border-bottom-color: var(--p);
-            border-radius: 50%; display: inline-block;
-            box-sizing: border-box; animation: rotation 1s linear infinite;
+        .service-card:hover {
+            border-color: #6366f1;
+            transform: scale(1.02);
         }
-        @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Thanh cuộn */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #222; border-radius: 10px; }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col">
 
-    <div class="blob"></div>
-
-    <header class="p-6 border-b border-white/5 bg-black/50 sticky top-0 z-50 backdrop-blur-md">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center font-bold text-xl shadow-[0_0_15px_rgba(99,102,241,0.5)]">H</div>
-                <span class="text-xl font-bold tracking-tighter uppercase">Harblx <span class="text-indigo-500">API</span></span>
-            </div>
-            <a href="https://discord.gg/yourlink" class="text-xs font-bold py-2 px-4 border border-white/10 rounded-full hover:bg-white hover:text-black transition uppercase tracking-widest">Discord</a>
+    <header class="p-6 flex justify-between items-center max-w-5xl mx-auto w-full">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-[#4f46e5] rounded-xl flex items-center justify-center font-bold text-xl shadow-[0_0_20px_rgba(79,70,229,0.4)]">H</div>
+            <span class="text-xl font-bold tracking-tight uppercase">Harblx <span class="text-gray-500">API</span></span>
         </div>
+        <a href="#" class="text-[11px] font-bold py-2 px-6 border border-white/10 rounded-full hover:bg-white hover:text-black transition uppercase tracking-widest bg-black/40">Discord</a>
     </header>
 
-    <main class="max-w-5xl mx-auto px-6 py-20">
-        <div class="text-center mb-16">
-            <h1 class="text-5xl md:text-7xl font-black mb-6 italic uppercase">Supported</h1>
-            <p class="text-gray-400">Danh sách các dịch vụ đang được hỗ trợ bởi hệ thống Harblx Online.</p>
+    <main class="flex-1 flex flex-col items-center justify-center px-6 pb-20">
+        <div class="text-center mb-12">
+            <h1 class="text-5xl md:text-6xl font-black italic mb-6 tracking-tighter glow-text uppercase">Supported</h1>
+            <p class="text-gray-500 max-w-sm mx-auto text-sm leading-relaxed">
+                Danh sách các dịch vụ đang được hỗ trợ bởi hệ thống Harblx Online.
+            </p>
         </div>
 
-        <div id="loading-state" class="flex flex-col items-center justify-center py-20">
-            <span class="loader"></span>
-            <p class="mt-4 text-gray-500 animate-pulse">Đang tải dữ liệu từ API...</p>
-        </div>
-
-        <div id="services-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 hidden">
+        <div id="content-area" class="w-full max-w-xl">
+            <div id="loader" class="text-center py-20">
+                <div class="inline-block w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
             </div>
 
-        <div id="error-state" class="hidden text-center py-20 border border-red-500/20 rounded-3xl bg-red-500/5">
-            <p class="text-red-400 font-bold">⚠️ Không thể kết nối tới API Harblx!</p>
-            <p class="text-gray-500 text-sm mt-2">Vui lòng kiểm tra lại server hoặc cấu hình CORS.</p>
+            <div id="services-grid" class="grid grid-cols-2 gap-4 hidden"></div>
+
+            <div id="error-box" class="error-container p-10 text-center hidden">
+                <div class="text-yellow-500 text-3xl mb-4">⚠️</div>
+                <h3 class="text-red-500 font-bold text-lg mb-2">Không thể kết nối tới API Harblx!</h3>
+                <p class="text-gray-500 text-sm">Vui lòng kiểm tra lại server hoặc cấu hình CORS.</p>
+            </div>
         </div>
     </main>
 
-    <footer class="py-10 text-center border-t border-white/5 opacity-40 text-[10px] tracking-[5px] uppercase">
-        Endpoint: api.harblx.online:31329
+    <footer class="py-10 text-center">
+        <p class="text-[10px] text-gray-700 tracking-[4px] uppercase font-medium">Endpoint: api.harblx.online:31329</p>
     </footer>
 
     <script>
         const API_URL = 'http://api.harblx.online:31329/v1/supported';
-        const container = document.getElementById('services-container');
-        const loader = document.getElementById('loading-state');
-        const errorMsg = document.getElementById('error-state');
+        
+        async function loadData() {
+            const grid = document.getElementById('services-grid');
+            const loader = document.getElementById('loader');
+            const errorBox = document.getElementById('error-box');
 
-        async function fetchServices() {
             try {
-                // Gọi API
-                const response = await fetch(API_URL);
-                if (!response.ok) throw new Error('Network response was not ok');
-                
-                const data = await response.json();
-                
-                // Giả sử data trả về là một array các tên dịch vụ
-                // Ví dụ: ["Linkvertise", "Lootlabs", ...]
-                renderServices(data.supported || data); // Chỉnh sửa theo đúng format JSON của bạn
-                
-            } catch (error) {
-                console.error('Fetch error:', error);
-                loader.classList.add('hidden');
-                errorMsg.classList.remove('hidden');
-            }
-        }
+                // Thêm timeout để tránh đợi quá lâu
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 5000);
 
-        function renderServices(services) {
-            loader.classList.add('hidden');
-            container.classList.remove('hidden');
-            
-            if (Array.isArray(services)) {
-                container.innerHTML = services.map(service => `
-                    <div class="service-card p-6 rounded-2xl text-center">
-                        <div class="w-2 h-2 bg-indigo-500 rounded-full mx-auto mb-4 shadow-[0_0_8px_#6366f1]"></div>
-                        <span class="font-bold text-gray-200">${service}</span>
+                const response = await fetch(API_URL, { signal: controller.signal });
+                clearTimeout(timeoutId);
+
+                if (!response.ok) throw new Error();
+
+                const data = await response.json();
+                const services = data.supported || data;
+
+                loader.classList.add('hidden');
+                grid.classList.remove('hidden');
+                
+                grid.innerHTML = services.map(s => `
+                    <div class="service-card p-5 text-center">
+                        <span class="font-bold text-gray-300 text-sm uppercase tracking-wide">${s}</span>
                     </div>
                 `).join('');
-            } else {
-                // Nếu data là Object phức tạp hơn, bạn cần chỉnh sửa phần này
-                container.innerHTML = `<p class="col-span-full text-center text-gray-500">Định dạng dữ liệu không xác định.</p>`;
+
+            } catch (err) {
+                loader.classList.add('hidden');
+                errorBox.classList.remove('hidden');
+                console.error("Lỗi kết nối API:", err);
             }
         }
 
-        // Chạy hàm khi trang web load
-        fetchServices();
+        window.onload = loadData;
     </script>
 </body>
 </html>
