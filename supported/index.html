@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>izen.lol Clone — Supported Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #070808;
+            color: #ffffff;
+        }
+
+        /* Hiệu ứng chuyển động cho các khối cầu (Orbs) */
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+        .ambient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 0;
+            opacity: 0.15;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .glass-card {
+            background: rgba(15, 16, 17, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .service-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden">
+
+    <div class="fixed inset-0 pointer-events-none">
+        <div class="ambient-orb w-96 h-96 bg-white top-[-10%] left-[-5%]"></div>
+        <div class="ambient-orb w-[500px] h-[500px] bg-blue-900 bottom-[-10%] right-[-5%]" style="animation-delay: -5s;"></div>
+        <div class="ambient-orb w-64 h-64 bg-slate-500 top-[40%] left-[30%]" style="animation-delay: -10s;"></div>
+    </div>
+
+    <div class="relative z-10 flex flex-col min-h-screen">
+        
+        <nav class="border-b border-white/10 bg-black/40 backdrop-blur-xl sticky top-0 z-50">
+            <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center border border-white/10">
+                        <span class="font-bold text-sm">Z</span>
+                    </div>
+                    <span class="font-semibold tracking-tight">izen.lol</span>
+                </div>
+                <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+                    <a href="#" class="hover:text-white transition">Home</a>
+                    <a href="#" class="text-white">Supported</a>
+                    <a href="#" class="hover:text-white transition">API</a>
+                    <a href="#" class="hover:text-white transition">Discord</a>
+                </div>
+                <button class="bg-white text-black px-4 py-2 rounded-xl text-sm font-bold hover:bg-gray-200 transition">
+                    Get Started
+                </button>
+            </div>
+        </nav>
+
+        <main class="flex-1 max-w-4xl mx-auto w-full pt-20 pb-20 px-6">
+            <div class="glass-card rounded-[32px] p-8 md:p-12 shadow-2xl">
+                <header class="mb-12">
+                    <h1 class="text-4xl font-bold tracking-tight mb-4">Supported Services</h1>
+                    <p class="text-gray-400 text-lg">Hệ thống hỗ trợ vượt qua các liên kết rút gọn và hệ thống key tự động.</p>
+                </header>
+
+                <section class="mb-12">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-2 h-2 bg-green-500 rounded-full shadow-[0_0_10px_#22c55e]"></div>
+                        <h2 class="text-xl font-semibold">Ad-Link Services</h2>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        <div class="service-item bg-white/[0.02] border border-white/[0.05] p-4 rounded-2xl transition-all duration-300">Linkvertise</div>
+                        <div class="service-item bg-white/[0.02] border border-white/[0.05] p-4 rounded-2xl transition-all duration-300">Lootlabs</div>
+                        <div class="service-item bg-white/[0.02] border border-white/[0.05] p-4 rounded-2xl transition-all duration-300">Admaven</div>
+                        <div class="service-item bg-white/[0.02] border border-white/[0.05] p-4 rounded-2xl transition-all duration-300">Workink</div>
+                        <div class="service-item bg-white/[0.02] border border-white/[0.05] p-4 rounded-2xl transition-all duration-300">Rekonise</div>
+                        <div class="service-item bg-white/[0.02] border border-white/[0.05] p-4 rounded-2xl transition-all duration-300">Boostellar</div>
+                    </div>
+                </section>
+
+                <section class="mb-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_10px_#3b82f6]"></div>
+                        <h2 class="text-xl font-semibold">Key Systems</h2>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        <div class="service-item bg-white/[0.02] border border-white/[0.05] p-4 rounded-2xl transition-all duration-300">Codex Key</div>
+                        <div class="service-item bg-white/[0.02] border border-white/[0.05] p-4 rounded-2xl transition-all duration-300">Hydrogen Key</div>
+                        <div class="service-item bg-white/[0.02] border border-white/[0.05] p-4 rounded-2xl transition-all duration-300">Delta Key</div>
+                        <div class="service-item bg-white/[0.02] border border-white/[0.05] p-4 rounded-2xl transition-all duration-300">Platoboost</div>
+                        <div class="service-item bg-white/[0.02] border border-white/[0.05] p-4 rounded-2xl transition-all duration-300">Trigon Evo</div>
+                        <div class="service-item bg-white/[0.02] border border-white/[0.05] p-4 rounded-2xl transition-all duration-300">Panda Dev</div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="py-12 border-t border-white/5 bg-black/20 relative z-10">
+            <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-gray-500 text-sm">
+                    izen.lol © 2025-2026. Made with ❤️
+                </div>
+                <div class="flex gap-6 text-sm text-gray-400">
+                    <a href="#" class="hover:text-white transition">Terms</a>
+                    <a href="#" class="hover:text-white transition">Privacy</a>
+                    <a href="#" class="hover:text-white transition">Contact</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
