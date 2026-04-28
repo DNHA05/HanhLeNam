@@ -6,7 +6,6 @@
 <title>Hỗ Trợ Bypass</title>
 
 <style>
-/* --- CSS CƠ BẢN --- */
 *{
     margin:0;
     padding:0;
@@ -34,14 +33,13 @@ body.light{
     position:relative;
 }
 
-/* --- BUTTON TOGGLE PAPER CUT STYLE --- */
 .theme-toggle {
     position: absolute;
     right: 0;
     top: -10px;
     width: 65px;
     height: 30px;
-    background: #2C3344; /* Nền tối ban đêm */
+    background: #2C3344; 
     border-radius: 20px;
     cursor: pointer;
     overflow: hidden;
@@ -54,7 +52,7 @@ body.light{
 .toggle-circle {
     width: 24px;
     height: 24px;
-    background: #D1D5DB; /* Màu mặt trăng */
+    background: #D1D5DB;
     border-radius: 50%;
     position: absolute;
     left: calc(100% - 27px);
@@ -62,8 +60,6 @@ body.light{
     z-index: 5;
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
-
-/* Các lỗ nhỏ trên mặt trăng */
 .toggle-circle::before {
     content: "";
     position: absolute;
@@ -76,23 +72,20 @@ body.light{
     box-shadow: 8px 10px 0 -1px #94A3B8, 12px 2px 0 -1px #94A3B8;
     transition: .3s;
 }
-
-/* Khi sang chế độ Sáng (Light Mode) */
 body.light .theme-toggle {
-    background: #83D8FF; /* Bầu trời xanh */
+    background: #83D8FF; 
 }
 
 body.light .toggle-circle {
     left: 3px;
-    background: #FFD32A; /* Biến thành mặt trời */
+    background: #FFD32A; 
     box-shadow: 0 0 10px #FFD32A;
 }
 
 body.light .toggle-circle::before {
-    opacity: 0; /* Ẩn vết mặt trăng */
+    opacity: 0; 
 }
 
-/* Hiệu ứng mây/sao bên trong nút */
 .theme-toggle::after {
     content: "☁️";
     position: absolute;
@@ -103,7 +96,6 @@ body.light .toggle-circle::before {
 }
 body.light .theme-toggle::after { opacity: 1; }
 
-/* --- CSS CARD (GIỮ NGUYÊN) --- */
 .title{
     text-align:center;
     font-size:28px;
@@ -302,17 +294,13 @@ body.light .divider{ background:#ddd; }
 </div>
 
 <script>
-// 1. Chuyển đổi Theme
 function toggleTheme(){
     document.body.classList.toggle("light");
 }
-
-// 2. Tự động tính thời gian hoạt động (Uptime)
 function calculateUptime(startDateStr) {
     const start = new Date(startDateStr);
     const now = new Date();
     
-    // Tính số tháng chênh lệch
     let months = (now.getFullYear() - start.getFullYear()) * 12;
     months -= start.getMonth();
     months += now.getMonth();
@@ -327,7 +315,6 @@ function calculateUptime(startDateStr) {
     }
 }
 
-// 3. Hiệu ứng số nhảy (Counter)
 function animateCounter(id, end, duration) {
     let start = 0;
     let obj = document.getElementById(id);
@@ -343,9 +330,7 @@ function animateCounter(id, end, duration) {
     }, 16);
 }
 
-// KHỞI CHẠY
-// Bạn sửa ngày bắt đầu tại đây: (Định dạng: YYYY-MM-DD)
-calculateUptime("2020-05-01"); 
+calculateUptime("2024-07-01"); 
 
 animateCounter("counter", 20674928, 2000);
 </script>
