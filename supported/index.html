@@ -1,97 +1,354 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HARBLX API | Supported</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        body { background-color: #050505; color: white; font-family: 'Inter', sans-serif; }
-        .glow-text { text-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
-        .service-card {
-            background: #0a0a0a;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            transition: all 0.3s ease;
-        }
-        .service-card:hover { border-color: #6366f1; transform: scale(1.02); }
-        .error-container { background: rgba(255, 0, 0, 0.03); border: 1px solid rgba(255, 50, 50, 0.15); border-radius: 24px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hỗ Trợ Bypass</title>
+
+<style>
+/* --- CSS CƠ BẢN --- */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Inter,system-ui;
+}
+
+body{
+    background:#0a0a0a;
+    color:#fff;
+    padding:40px 15px;
+    display:flex;
+    justify-content:center;
+    transition:.25s;
+}
+
+body.light{
+    background:#f5f5f5;
+    color:#111;
+}
+
+.container{
+    width:100%;
+    max-width:850px;
+    position:relative;
+}
+
+/* --- BUTTON TOGGLE PAPER CUT STYLE --- */
+.theme-toggle {
+    position: absolute;
+    right: 0;
+    top: -10px;
+    width: 65px;
+    height: 30px;
+    background: #2C3344; /* Nền tối ban đêm */
+    border-radius: 20px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: .4s;
+    box-shadow: inset 0 4px 8px rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+}
+
+.toggle-circle {
+    width: 24px;
+    height: 24px;
+    background: #D1D5DB; /* Màu mặt trăng */
+    border-radius: 50%;
+    position: absolute;
+    left: calc(100% - 27px);
+    transition: .4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 5;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Các lỗ nhỏ trên mặt trăng */
+.toggle-circle::before {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #94A3B8;
+    border-radius: 50%;
+    top: 5px;
+    left: 5px;
+    box-shadow: 8px 10px 0 -1px #94A3B8, 12px 2px 0 -1px #94A3B8;
+    transition: .3s;
+}
+
+/* Khi sang chế độ Sáng (Light Mode) */
+body.light .theme-toggle {
+    background: #83D8FF; /* Bầu trời xanh */
+}
+
+body.light .toggle-circle {
+    left: 3px;
+    background: #FFD32A; /* Biến thành mặt trời */
+    box-shadow: 0 0 10px #FFD32A;
+}
+
+body.light .toggle-circle::before {
+    opacity: 0; /* Ẩn vết mặt trăng */
+}
+
+/* Hiệu ứng mây/sao bên trong nút */
+.theme-toggle::after {
+    content: "☁️";
+    position: absolute;
+    left: 8px;
+    font-size: 12px;
+    opacity: 0;
+    transition: .3s;
+}
+body.light .theme-toggle::after { opacity: 1; }
+
+/* --- CSS CARD (GIỮ NGUYÊN) --- */
+.title{
+    text-align:center;
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:25px;
+}
+
+.card{
+    background:#111;
+    border-radius:16px;
+    padding:18px;
+    margin-bottom:18px;
+    border:1px solid #222;
+}
+
+body.light .card{
+    background:white;
+    border:1px solid #e5e5e5;
+}
+
+.card-header{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:12px;
+    font-weight:600;
+    color:#ddd;
+    font-size:14px;
+}
+
+body.light .card-header{ color:#333; }
+
+.icon{
+    width:20px;
+    height:20px;
+    border-radius:6px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:11px;
+    background:#222;
+}
+
+body.light .icon{ background:#eee; }
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+}
+
+.btn{
+    background:#0d0d0d;
+    border:1px solid #222;
+    padding:8px;
+    border-radius:10px;
+    text-align:center;
+    cursor:pointer;
+    color:#aaa;
+    font-size:12px;
+    transition: .2s;
+}
+
+body.light .btn{ background:#fafafa; border:1px solid #e5e5e5; color:#333; }
+.btn:hover{ background:#151515; color:white; }
+body.light .btn:hover{ background:#eee; color:black; }
+
+.stats{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    background:#111;
+    padding:28px;
+    border-radius:16px;
+    margin-top:25px;
+    border:1px solid #222;
+}
+
+body.light .stats{ background:white; border:1px solid #e5e5e5; }
+.stat{ flex:1; text-align:center; }
+.stat-number{ font-size:34px; font-weight:700; }
+.stat-label{ margin-top:5px; color:#888; font-size:12px; }
+
+.footer{
+    margin-top:20px;
+    background:#111;
+    padding:18px 20px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:15px;
+    border:1px solid #222;
+}
+
+body.light .footer{ background:white; border:1px solid #e5e5e5; }
+.footer-left{ display:flex; gap:8px; }
+.social{ width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center; background:#0d0d0d; border:1px solid #222; text-decoration:none; color:white; }
+body.light .social{ background:#f5f5f5; border:1px solid #ddd; color:black; }
+.footer-center{ color:#888; font-size:12px; }
+.footer-right{ display:flex; gap:14px; font-size:12px; }
+.footer-right a{ text-decoration:none; color:#888; }
+.divider{ width:1px; height:14px; background:#333; }
+body.light .divider{ background:#ddd; }
+
+@media(max-width:700px){
+    .grid{grid-template-columns:1fr;}
+    .stats{flex-direction:column;}
+    .footer{flex-direction:column;text-align:center;}
+}
+</style>
 </head>
-<body class="min-h-screen flex flex-col">
 
-    <header class="p-6 flex justify-between items-center max-w-5xl mx-auto w-full">
-        <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-[#4f46e5] rounded-xl flex items-center justify-center font-bold text-xl shadow-[0_0_20px_rgba(79,70,229,0.4)]">H</div>
-            <span class="text-xl font-bold tracking-tight uppercase">Harblx <span class="text-gray-500">API</span></span>
-        </div>
-        <button class="text-[11px] font-bold py-2 px-6 border border-white/10 rounded-full bg-black/40 uppercase tracking-widest">Discord</button>
-    </header>
+<body>
 
-    <main class="flex-1 flex flex-col items-center justify-center px-6 pb-20">
-        <div class="text-center mb-12">
-            <h1 class="text-5xl md:text-6xl font-black italic mb-6 tracking-tighter glow-text uppercase">SUPPORTED</h1>
-            <p class="text-gray-500 max-w-sm mx-auto text-sm leading-relaxed">Danh sách các dịch vụ đang được hỗ trợ bởi hệ thống Harblx Online.</p>
-        </div>
+<div class="container">
 
-        <div id="content-area" class="w-full max-w-xl">
-            <div id="loader" class="text-center py-20">
-                <div class="inline-block w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
-                <p class="text-gray-600 text-xs mt-4 uppercase tracking-widest">Đang kết nối API...</p>
-            </div>
+<div class="theme-toggle" onclick="toggleTheme()">
+    <div class="toggle-circle"></div>
+</div>
 
-            <div id="services-grid" class="grid grid-cols-2 gap-4 hidden"></div>
+<div class="title">HỖ TRỢ BYPASS</div>
 
-            <div id="error-box" class="error-container p-10 text-center hidden">
-                <div class="text-yellow-500 text-3xl mb-4">⚠️</div>
-                <h3 class="text-red-500 font-bold text-lg mb-2">Lỗi kết nối API!</h3>
-                <p id="error-detail" class="text-gray-500 text-sm">Vui lòng kiểm tra lại CORS hoặc Server.</p>
-            </div>
-        </div>
-    </main>
+<div class="card">
+    <div class="card-header"><div class="icon">🔑</div>Key System</div>
+    <div class="grid">
+        <div class="btn">Platoboost</div>
+        <div class="btn">Pandadevelopment</div>
+        <div class="btn">Trigon</div>
+        <div class="btn">Violated</div>
+        <div class="btn">Blox-script</div>
+        <div class="btn">Hydrogen</div>
+        <div class="btn">Codex</div>
+    </div>
+</div>
 
-    <footer class="py-10 text-center">
-        <p class="text-[10px] text-gray-700 tracking-[4px] uppercase font-medium">ENDPOINT: API.HARBLX.ONLINE:31329</p>
-    </footer>
+<div class="card">
+    <div class="card-header"><div class="icon">Ad</div>Ad-Link</div>
+    <div class="grid">
+        <div class="btn">Linkvertise</div>
+        <div class="btn">Admaven</div>
+        <div class="btn">Workink</div>
+        <div class="btn">Fly.inc</div>
+        <div class="btn">Shrfly</div>
+        <div class="btn">Locksro</div>
+        <div class="btn">Linkunlocker</div>
+        <div class="btn">Link-unlock</div>
+        <div class="btn">Arolinks</div>
+    </div>
+</div>
 
-    <script>
-        // Sử dụng AllOrigins để vượt lỗi CORS
-        const TARGET_API = 'http://api.harblx.online:31329/v1/supported';
-        const PROXY_URL = `https://api.allorigins.win/get?url=${encodeURIComponent(TARGET_API)}`;
+<div class="card">
+    <div class="card-header"><div class="icon">📦</div>Paste</div>
+    <div class="grid">
+        <div class="btn">Pastebin</div>
+        <div class="btn">Paste-Drop</div>
+        <div class="btn">Pastefy</div>
+        <div class="btn">Pasterso</div>
+    </div>
+</div>
 
-        async function fetchAPI() {
-            const grid = document.getElementById('services-grid');
-            const loader = document.getElementById('loader');
-            const errorBox = document.getElementById('error-box');
+<div class="stats">
+    <div class="stat">
+        <div class="stat-number" id="counter">0</div>
+        <div class="stat-label">Links Bypassed</div>
+    </div>
 
-            try {
-                const response = await fetch(PROXY_URL);
-                if (!response.ok) throw new Error('Proxy error');
-                
-                const wrapper = await response.json();
-                const data = JSON.parse(wrapper.contents); // Parse dữ liệu gốc từ Proxy
-                
-                // Lấy danh sách dịch vụ (tùy vào cấu trúc JSON của bạn)
-                const services = data.supported || data;
+    <div class="stat">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Supported Services</div>
+    </div>
 
-                loader.classList.add('hidden');
-                grid.classList.remove('hidden');
-                
-                grid.innerHTML = services.map(name => `
-                    <div class="service-card p-5 text-center shadow-lg">
-                        <span class="font-bold text-gray-300 text-xs uppercase tracking-widest">${name}</span>
-                    </div>
-                `).join('');
+    <div class="stat">
+        <div class="stat-number" id="uptime-value">0</div>
+        <div class="stat-label">Of Service</div>
+    </div>
+</div>
 
-            } catch (err) {
-                loader.classList.add('hidden');
-                errorBox.classList.remove('hidden');
-                console.error("Lỗi:", err);
-            }
+<div class="footer">
+    <div class="footer-left">
+        <a href="#" class="social">🎮</a>
+        <a href="#" class="social">✈</a>
+    </div>
+    <div class="footer-center">izen.lol © 2025-2026</div>
+    <div class="footer-right">
+        <a href="#">Home</a>
+        <a href="#">Blog</a>
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <span class="divider"></span>
+        <a href="#">Contact</a>
+    </div>
+</div>
+
+</div>
+
+<script>
+// 1. Chuyển đổi Theme
+function toggleTheme(){
+    document.body.classList.toggle("light");
+}
+
+// 2. Tự động tính thời gian hoạt động (Uptime)
+function calculateUptime(startDateStr) {
+    const start = new Date(startDateStr);
+    const now = new Date();
+    
+    // Tính số tháng chênh lệch
+    let months = (now.getFullYear() - start.getFullYear()) * 12;
+    months -= start.getMonth();
+    months += now.getMonth();
+    
+    const display = document.getElementById("uptime-value");
+    
+    if (months >= 12) {
+        const years = Math.floor(months / 12);
+        display.textContent = years + (years === 1 ? " year" : " years");
+    } else {
+        display.textContent = Math.max(0, months) + " months";
+    }
+}
+
+// 3. Hiệu ứng số nhảy (Counter)
+function animateCounter(id, end, duration) {
+    let start = 0;
+    let obj = document.getElementById(id);
+    let increment = end / (duration / 16);
+
+    let timer = setInterval(() => {
+        start += increment;
+        if (start >= end) {
+            start = end;
+            clearInterval(timer);
         }
+        obj.textContent = Math.floor(start).toLocaleString('en-US');
+    }, 16);
+}
 
-        window.onload = fetchAPI;
-    </script>
+// KHỞI CHẠY
+// Bạn sửa ngày bắt đầu tại đây: (Định dạng: YYYY-MM-DD)
+calculateUptime("2020-05-01"); 
+
+animateCounter("counter", 20674928, 2000);
+</script>
+
 </body>
 </html>
